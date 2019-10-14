@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:todoye/constants.dart';
 import 'package:intl/intl.dart';
+import 'package:todoye/widgets/date_picker.dart';
+import 'package:todoye/widgets/time_picker.dart';
 
 class CreateTaskScreen extends StatefulWidget {
   @override
@@ -9,38 +11,54 @@ class CreateTaskScreen extends StatefulWidget {
 
 class _CreateTaskScreenState extends State<CreateTaskScreen> {
   final TextEditingController _taskTitleController = TextEditingController();
+
   String taskTitle = '';
-
   DateTime _currentDate = new DateTime.now();
+  TimeOfDay _currentTime = new TimeOfDay.now();
 
+  String timeText = 'Set A Time';
+
+  ///TIme picker
 
   @override
   Widget build(BuildContext context) {
+    Future<Null> selectTime(BuildContext context) async {
+      TimeOfDay selectedTime = await showTimePicker(
+        context: context,
+        initialTime: _currentTime,
+      );
 
-    String _formatedDate = new DateFormat.yMMMd().format(_currentDate);
+      MaterialLocalizations localizations = MaterialLocalizations.of(context);
+      String formattedTime = localizations.formatTimeOfDay(selectedTime,
+          alwaysUse24HourFormat: false);
 
-    Future<Null> _selectedDate(BuildContext context) async{
+      if (formattedTime != null) {
+        setState(() {
+          timeText = formattedTime;
+        });
+      }
+    }
 
+    ///Date Picker
+    ///Selected Date
+    String formatedDate = new DateFormat.yMMMd().format(_currentDate);
+    Future<Null> selectedDate(BuildContext context) async {
       final DateTime _selectDate = await showDatePicker(
           context: context,
           initialDate: _currentDate,
           firstDate: DateTime(2019),
           lastDate: DateTime(2021),
-          builder: (context,child) {
-            return SingleChildScrollView(child: child,);
-          }
-
-      );
-      if(_selectDate != null) {
+          builder: (context, child) {
+            return SingleChildScrollView(
+              child: child,
+            );
+          });
+      if (_selectDate != null) {
         setState(() {
           _currentDate = _selectDate;
         });
       }
-
     }
-
-
-
 
     return Scaffold(
       backgroundColor: Color(kPrimaryColor),
@@ -57,7 +75,7 @@ class _CreateTaskScreenState extends State<CreateTaskScreen> {
           ),
           child: Container(
             decoration: BoxDecoration(
-              color: Colors.white,
+              color: Color(kLightBackgroundColor),
               borderRadius: BorderRadius.only(
                 topLeft: Radius.circular(20.0),
                 topRight: Radius.circular(20.0),
@@ -70,73 +88,35 @@ class _CreateTaskScreenState extends State<CreateTaskScreen> {
             child: Column(
               children: <Widget>[
                 TextField(
+                  style: kInputTextStyle,
                   controller: _taskTitleController,
                   onChanged: (value) {
                     taskTitle = value;
                   },
                   decoration: InputDecoration(
-                      labelText: 'Add Task',
-                      suffixIcon: IconButton(
-                        icon: Icon(Icons.close),
-                        onPressed: () {
-                          WidgetsBinding.instance.addPostFrameCallback(
-                              (_) => _taskTitleController.clear());
-                        },
-                      )),
-                ),
-                FlatButton(
-                  padding: EdgeInsets.only(top: 30.0, bottom: 10.0),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: <Widget>[
-                      Icon(Icons.calendar_today),
-                      SizedBox(
-                        width: 50.0,
+                    labelText: 'Add Task',
+                    labelStyle: kInputLabelTextStyle,
+                    suffixIcon: IconButton(
+                      icon: Icon(
+                        Icons.close,
+                        color: Colors.white,
                       ),
-                      Text('$_formatedDate'),
-                      SizedBox(
-                        width: 100.0,
-                      ),
-                      Text('All Day'),
-                    ],
+                      onPressed: () {
+                        WidgetsBinding.instance.addPostFrameCallback(
+                            (_) => _taskTitleController.clear());
+                      },
+                    ),
                   ),
-                  onPressed: () {
-                    _selectedDate(context);
-                  },
                 ),
-                FlatButton(
-                  padding: EdgeInsets.symmetric(vertical: 10.0),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: <Widget>[
-                      Icon(Icons.access_time),
-                      SizedBox(
-                        width: 50.0,
-                      ),
-                      Text('Thrusday at 10:00pm until'),
-                    ],
-                  ),
-                  onPressed: () {
-                    //TODO: add function here
-                  },
+                DatePicker(
+                  formatedDate: formatedDate,
+                  selectedDate: selectedDate,
                 ),
-                FlatButton(
-                  padding: EdgeInsets.symmetric(vertical: 10.0),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: <Widget>[
-                      Icon(Icons.access_time),
-                      SizedBox(
-                        width: 50.0,
-                      ),
-                      Text('Thrusday at 12:00pm'),
-                    ],
-                  ),
-                  onPressed: () {
-                    //TODO: add function here
+                TimePicker(
+                  icon: Icons.access_time,
+                  selectedTime: '$timeText',
+                  onPress: () {
+                    selectTime(context);
                   },
                 ),
               ],

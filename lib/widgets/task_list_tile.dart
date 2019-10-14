@@ -16,13 +16,14 @@ class TaskListTile extends StatelessWidget {
     return ListTile(
       title: Text(
         tasks[index].name,
-        style: TextStyle(color: Colors.white),
+        style: TextStyle(color: Colors.white, fontSize: 20.0,letterSpacing: 2.0,),
       ),
       subtitle: Text(
         '09:30-11:00am',
         style: TextStyle(
           letterSpacing: 2.0,
           fontSize: 15.0,
+          fontWeight: FontWeight.bold,
           color: Color(kBorderTileColor),
         ),
       ),

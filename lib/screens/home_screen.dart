@@ -29,7 +29,7 @@ class HomeScreen extends StatelessWidget {
             DrawerHeader(
               child: Text('Drawer Header'),
               decoration: BoxDecoration(
-                color: Colors.blue,
+                color: Color(kPrimaryColor),
               ),
             ),
             ListTile(
