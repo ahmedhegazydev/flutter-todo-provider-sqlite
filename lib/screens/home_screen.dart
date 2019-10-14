@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:todoye/constants.dart';
 import 'package:todoye/models/task.dart';
 import 'package:todoye/screens/create_task_screen.dart';
-
 import 'package:todoye/widgets/task_list_view.dart';
 import 'package:todoye/widgets/user_intro_section.dart';
 import 'package:todoye/widgets/list_box_title.dart';
@@ -21,19 +20,36 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
+      endDrawer: Drawer(
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: <Widget>[
+            DrawerHeader(
+              child: Text('Drawer Header'),
+              decoration: BoxDecoration(
+                color: Colors.blue,
+              ),
+            ),
+            ListTile(
+              title: Text('Item 1'),
+              onTap: () {
+                Navigator.pop(context);
+              },
+            ),
+            ListTile(
+              title: Text('Item 2'),
+              onTap: () {
+                Navigator.pop(context);
+              },
+            ),
+          ],
+        ),
+      ),
       backgroundColor: Color(kPrimaryColor),
       appBar: AppBar(
         elevation: 0.0,
-        actions: <Widget>[
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20.0),
-            child: Icon(
-              Icons.menu,
-              size: 30.0,
-            ),
-          )
-        ],
       ),
       floatingActionButton: FloatingActionButton(
         backgroundColor: Color(kFloatingActionButtonColor),

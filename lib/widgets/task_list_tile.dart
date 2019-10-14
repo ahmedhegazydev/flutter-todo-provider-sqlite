@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'package:todoye/models/task.dart';
 import 'package:todoye/constants.dart';
 
@@ -28,6 +27,11 @@ class TaskListTile extends StatelessWidget {
         ),
       ),
       leading: Checkbox(
+        activeColor: Colors.red,
+        checkColor: Colors.greenAccent,
+        onChanged: (value){
+          //TODO: add checkbox options here
+        },
         value: false,
       ),
     );
