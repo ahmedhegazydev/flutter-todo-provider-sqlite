@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:todoye/constants.dart';
 import 'package:intl/intl.dart';
+import 'package:todoye/models/task_data.dart';
 import 'package:todoye/widgets/date_picker.dart';
 import 'package:todoye/widgets/time_picker.dart';
+import 'package:todoye/models/task.dart';
+
 
 class CreateTaskScreen extends StatefulWidget {
   @override
@@ -18,10 +22,12 @@ class _CreateTaskScreenState extends State<CreateTaskScreen> {
 
   String timeText = 'Set A Time';
 
-  ///TIme picker
+  ///Time picker
 
   @override
   Widget build(BuildContext context) {
+
+
     Future<Null> selectTime(BuildContext context) async {
       TimeOfDay selectedTime = await showTimePicker(
         context: context,
@@ -119,6 +125,16 @@ class _CreateTaskScreenState extends State<CreateTaskScreen> {
                     selectTime(context);
                   },
                 ),
+                FlatButton(
+                  child: Text(
+                    "LET'S GO",
+                    style: TextStyle(fontSize: 30.0, color: Colors.white),
+                  ),
+                  onPressed: (){
+                     Provider.of<TaskData>(context).addTask(taskTitle);
+                     Navigator.pop(context);
+                    },
+                )
               ],
             ),
           ),

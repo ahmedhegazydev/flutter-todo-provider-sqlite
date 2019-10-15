@@ -1,22 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:todoye/constants.dart';
-import 'package:todoye/models/task.dart';
 import 'package:todoye/screens/create_task_screen.dart';
 import 'package:todoye/widgets/task_list_view.dart';
 import 'package:todoye/widgets/user_intro_section.dart';
 import 'package:todoye/widgets/list_box_title.dart';
+import 'package:provider/provider.dart';
+import 'package:todoye/models/task_data.dart';
 
 class HomeScreen extends StatelessWidget {
-  final List<Task> tasks = [
-    Task(name: 'Buy coffee'),
-    Task(name: 'Go Shopping'),
-    Task(name: 'Go Shopping'),
-    Task(name: 'Go Shopping'),
-    Task(name: 'Go Shopping'),
-    Task(name: 'Go Shopping'),
-    Task(name: 'Go Shopping'),
-    Task(name: 'Go Shopping'),
-  ];
 
   @override
   Widget build(BuildContext context) {
@@ -87,7 +78,7 @@ class HomeScreen extends StatelessWidget {
                   children: <Widget>[
                     new ListBoxTitle(),
                     Expanded(
-                      child: new TaskListView(tasks: tasks),
+                      child: new TaskListView(),
                     )
                   ],
                 ),

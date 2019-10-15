@@ -1,22 +1,29 @@
 import 'package:flutter/material.dart';
-import 'package:todoye/models/task.dart';
 import 'package:todoye/constants.dart';
 
 class TaskListTile extends StatelessWidget {
-  const TaskListTile({
-    Key key,
-    @required this.tasks,
-    this.index,
-  }) : super(key: key);
-  final index;
-  final List<Task> tasks;
+  const TaskListTile(
+      {this.taskTitle,
+      this.isChecked,
+      this.checkboxCallback,
+      this.deleteCallback});
+
+  final String taskTitle;
+  final bool isChecked;
+  final Function checkboxCallback;
+  final Function deleteCallback;
 
   @override
   Widget build(BuildContext context) {
     return ListTile(
       title: Text(
-        tasks[index].name,
-        style: TextStyle(color: Colors.white, fontSize: 20.0,letterSpacing: 2.0,),
+        '$taskTitle',
+        style: TextStyle(
+          decoration: isChecked ? TextDecoration.lineThrough : null,
+          color: Colors.white,
+          fontSize: 20.0,
+          letterSpacing: 2.0,
+        ),
       ),
       subtitle: Text(
         '09:30-11:00am',
@@ -28,12 +35,11 @@ class TaskListTile extends StatelessWidget {
         ),
       ),
       leading: Checkbox(
+        //TODO: change checkbox color
         activeColor: Colors.red,
         checkColor: Colors.greenAccent,
-        onChanged: (value){
-          //TODO: add checkbox options here
-        },
-        value: false,
+        onChanged: checkboxCallback,
+        value: isChecked,
       ),
     );
   }
