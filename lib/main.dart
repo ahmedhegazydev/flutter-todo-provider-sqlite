@@ -7,7 +7,7 @@ import 'package:provider/provider.dart';
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
+
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
@@ -15,8 +15,17 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Todoye',
-        theme: ThemeData(
-          primaryColor: Color(kPrimaryColor)
+        theme: ThemeData.dark().copyWith(
+          primaryColor: Color(kPrimaryColor),
+          scaffoldBackgroundColor: Color(kPrimaryColor),
+          floatingActionButtonTheme: FloatingActionButtonThemeData(
+            backgroundColor: Color(kFloatingActionButtonColor),
+          ),
+          dividerTheme: DividerThemeData(
+            color: Color(kLightBackgroundColor),
+          ),
+          brightness: Brightness.dark,
+
         ),
         home: HomeScreen(),
 

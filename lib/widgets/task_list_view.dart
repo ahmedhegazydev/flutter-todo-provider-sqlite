@@ -12,27 +12,15 @@ class TaskListView extends StatelessWidget {
         return ListView.builder(
             itemCount: taskData.taskCount,
             itemBuilder: (context, index) {
-              return Container(
-                decoration: BoxDecoration(
-                  border: Border(
-                    bottom: BorderSide(
-                      width: 1.0,
-                      color: Color(kBorderTileColor),
-                      //TODO: reduce the color opacity
-                    ),
-                  ),
-                ),
-                child: new TaskListTile(
-                  taskTitle: taskData.tasks[index].name,
-                  isChecked: taskData.tasks[index].isDone,
-
-                  checkboxCallback: (checkboxState) {
-                    taskData.updateTask(taskData.tasks[index]);
-                  },
-                  deleteCallback: (){
-                    taskData.deleteTask(taskData.tasks[index]);
-                  },
-                ),
+              return TaskListTile(
+                taskTitle: taskData.tasks[index].name,
+                isChecked: taskData.tasks[index].isDone,
+                checkboxCallback: (checkboxState) {
+                  taskData.updateTask(taskData.tasks[index]);
+                },
+                deleteCallback: () {
+                  taskData.deleteTask(taskData.tasks[index]);
+                },
               );
             });
       },

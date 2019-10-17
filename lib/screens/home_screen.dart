@@ -4,17 +4,17 @@ import 'package:todoye/screens/create_task_screen.dart';
 import 'package:todoye/widgets/task_list_view.dart';
 import 'package:todoye/widgets/user_intro_section.dart';
 import 'package:todoye/widgets/list_box_title.dart';
-class HomeScreen extends StatelessWidget {
 
+class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       endDrawer: Drawer(
         child: ListView(
           padding: EdgeInsets.zero,
           children: <Widget>[
             DrawerHeader(
+              //TODO: edit drawer
               child: Text('Drawer Header'),
               decoration: BoxDecoration(
                 color: Color(kPrimaryColor),
@@ -35,20 +35,18 @@ class HomeScreen extends StatelessWidget {
           ],
         ),
       ),
-      backgroundColor: Color(kPrimaryColor),
       appBar: AppBar(
         elevation: 0.0,
       ),
       floatingActionButton: FloatingActionButton(
-        backgroundColor: Color(kFloatingActionButtonColor),
         child: Icon(
           Icons.add,
           color: Colors.white,
           size: 30.0,
         ),
-        onPressed: (){
-          Navigator.push(context, MaterialPageRoute(
-              builder:(context)=> CreateTaskScreen() ));
+        onPressed: () {
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => CreateTaskScreen()));
         },
       ),
       body: Column(
@@ -73,7 +71,7 @@ class HomeScreen extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: <Widget>[
-                    new ListBoxTitle(),
+                    ListBoxTitle(),
                     Expanded(
                       child: new TaskListView(),
                     )

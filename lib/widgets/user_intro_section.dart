@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class UserIntroSection extends StatelessWidget {
-  const UserIntroSection({
-    Key key,
-  }) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
+    DateTime _currentDate = new DateTime.now();
+    String formatedDate = new DateFormat.MMMMEEEEd().format(_currentDate);
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 20.0),
       child: Column(
@@ -20,7 +19,7 @@ class UserIntroSection extends StatelessWidget {
             ),
           ),
           Text(
-            'Thrusday, 27 April',
+            '$formatedDate',
             style: TextStyle(
               fontSize: 20.0,
               color: Colors.white,

@@ -22,10 +22,8 @@ class _CreateTaskScreenState extends State<CreateTaskScreen> {
 
   String timeText = 'Set A Time';
 
-
   @override
   Widget build(BuildContext context) {
-
     /// Time Picker
     Future<Null> selectTime(BuildContext context) async {
       TimeOfDay selectedTime = await showTimePicker(
@@ -99,7 +97,8 @@ class _CreateTaskScreenState extends State<CreateTaskScreen> {
                     taskTitle = value;
                   },
                   decoration: InputDecoration(
-                    errorText: _taskTitleValidate ? 'Title Can\' Be Empty': null,
+                    errorText:
+                        _taskTitleValidate ? 'Title Can\' Be Empty' : null,
                     labelText: 'Add Task',
                     labelStyle: kInputLabelTextStyle,
                     suffixIcon: IconButton(
@@ -126,15 +125,18 @@ class _CreateTaskScreenState extends State<CreateTaskScreen> {
                   },
                 ),
                 FlatButton(
+                  //TODO: style the button
                   child: Text(
                     "LET'S GO",
                     style: TextStyle(fontSize: 30.0, color: Colors.white),
                   ),
                   onPressed: () {
                     setState(() {
-                      taskTitle.isEmpty ? _taskTitleValidate = true : _taskTitleValidate=false;
+                      taskTitle.isEmpty
+                          ? _taskTitleValidate = true
+                          : _taskTitleValidate = false;
                     });
-                    if(_taskTitleValidate == true){
+                    if (_taskTitleValidate == true) {
                       return;
                     }
                     Provider.of<TaskData>(context).addTask(taskTitle);

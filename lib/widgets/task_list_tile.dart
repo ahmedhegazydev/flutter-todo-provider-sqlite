@@ -13,35 +13,49 @@ class TaskListTile extends StatelessWidget {
   final Function checkboxCallback;
   final Function deleteCallback;
 
-
   @override
   Widget build(BuildContext context) {
-    return ListTile(
-      onLongPress: deleteCallback,
-      title: Text(
-        '$taskTitle',
-        style: TextStyle(
-          decoration: isChecked ? TextDecoration.lineThrough : null,
-          color: Colors.white,
-          fontSize: 20.0,
-          letterSpacing: 2.0,
+    return Dismissible(
+      background: Container(
+        decoration: BoxDecoration(color: Colors.white),
+        child: Icon(
+          Icons.delete,
+          color: Colors.red,
         ),
       ),
-      subtitle: Text(
-        '09:30-11:00am',
-        style: TextStyle(
-          letterSpacing: 2.0,
-          fontSize: 15.0,
-          fontWeight: FontWeight.bold,
-          color: Color(kBorderTileColor),
+      key: Key(taskTitle),
+      onDismissed: (direction) {
+        deleteCallback();
+
+        Scaffold.of(context)
+            .showSnackBar(SnackBar(content: Text("$taskTitle removed.")));
+      },
+      child: ListTile(
+        title: Text(
+          '$taskTitle',
+          style: TextStyle(
+            decoration: isChecked ? TextDecoration.lineThrough : null,
+            color: Colors.white,
+            fontSize: 20.0,
+            letterSpacing: 2.0,
+          ),
         ),
-      ),
-      leading: Checkbox(
-        //TODO: change checkbox color
-        activeColor: Colors.red,
-        checkColor: Colors.greenAccent,
-        onChanged: checkboxCallback,
-        value: isChecked,
+        subtitle: Text(
+          '09:30-11:00am',
+          style: TextStyle(
+            letterSpacing: 2.0,
+            fontSize: 15.0,
+            fontWeight: FontWeight.bold,
+            color: Color(kBorderTileColor),
+          ),
+        ),
+        leading: Checkbox(
+          //TODO: change checkbox color
+          activeColor: Color(kBorderTileColor),
+          checkColor: Colors.greenAccent,
+          onChanged: checkboxCallback,
+          value: isChecked,
+        ),
       ),
     );
   }
