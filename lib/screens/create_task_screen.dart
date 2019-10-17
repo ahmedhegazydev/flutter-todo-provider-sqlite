@@ -22,6 +22,8 @@ class _CreateTaskScreenState extends State<CreateTaskScreen> {
 
   String timeText = 'Set A Time';
 
+
+
   @override
   Widget build(BuildContext context) {
     /// Time Picker
@@ -61,6 +63,8 @@ class _CreateTaskScreenState extends State<CreateTaskScreen> {
         });
       }
     }
+
+
 
     return Scaffold(
       backgroundColor: Color(kPrimaryColor),
@@ -139,7 +143,7 @@ class _CreateTaskScreenState extends State<CreateTaskScreen> {
                     if (_taskTitleValidate == true) {
                       return;
                     }
-                    Provider.of<TaskData>(context).addTask(taskTitle);
+                    Provider.of<TaskData>(context).addTask(taskTitle, formatedDate);
                     Navigator.pop(context);
                   },
                 )

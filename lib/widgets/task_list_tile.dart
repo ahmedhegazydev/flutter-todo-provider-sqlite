@@ -13,6 +13,7 @@ class TaskListTile extends StatelessWidget {
   final Function checkboxCallback;
   final Function deleteCallback;
 
+
   @override
   Widget build(BuildContext context) {
     return Dismissible(
@@ -50,7 +51,6 @@ class TaskListTile extends StatelessWidget {
           ),
         ),
         leading: Checkbox(
-          //TODO: change checkbox color
           activeColor: Color(kBorderTileColor),
           checkColor: Colors.greenAccent,
           onChanged: checkboxCallback,
