@@ -13,9 +13,11 @@ class TaskListTile extends StatelessWidget {
   final Function checkboxCallback;
   final Function deleteCallback;
 
+
   @override
   Widget build(BuildContext context) {
     return ListTile(
+      onLongPress: deleteCallback,
       title: Text(
         '$taskTitle',
         style: TextStyle(

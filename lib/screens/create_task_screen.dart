@@ -5,8 +5,6 @@ import 'package:intl/intl.dart';
 import 'package:todoye/models/task_data.dart';
 import 'package:todoye/widgets/date_picker.dart';
 import 'package:todoye/widgets/time_picker.dart';
-import 'package:todoye/models/task.dart';
-
 
 class CreateTaskScreen extends StatefulWidget {
   @override
@@ -17,17 +15,18 @@ class _CreateTaskScreenState extends State<CreateTaskScreen> {
   final TextEditingController _taskTitleController = TextEditingController();
 
   String taskTitle = '';
+  bool _taskTitleValidate = false;
+
   DateTime _currentDate = new DateTime.now();
   TimeOfDay _currentTime = new TimeOfDay.now();
 
   String timeText = 'Set A Time';
 
-  ///Time picker
 
   @override
   Widget build(BuildContext context) {
 
-
+    /// Time Picker
     Future<Null> selectTime(BuildContext context) async {
       TimeOfDay selectedTime = await showTimePicker(
         context: context,
@@ -46,7 +45,6 @@ class _CreateTaskScreenState extends State<CreateTaskScreen> {
     }
 
     ///Date Picker
-    ///Selected Date
     String formatedDate = new DateFormat.yMMMd().format(_currentDate);
     Future<Null> selectedDate(BuildContext context) async {
       final DateTime _selectDate = await showDatePicker(
@@ -94,12 +92,14 @@ class _CreateTaskScreenState extends State<CreateTaskScreen> {
             child: Column(
               children: <Widget>[
                 TextField(
+                  autofocus: true,
                   style: kInputTextStyle,
                   controller: _taskTitleController,
                   onChanged: (value) {
                     taskTitle = value;
                   },
                   decoration: InputDecoration(
+                    errorText: _taskTitleValidate ? 'Title Can\' Be Empty': null,
                     labelText: 'Add Task',
                     labelStyle: kInputLabelTextStyle,
                     suffixIcon: IconButton(
@@ -130,10 +130,16 @@ class _CreateTaskScreenState extends State<CreateTaskScreen> {
                     "LET'S GO",
                     style: TextStyle(fontSize: 30.0, color: Colors.white),
                   ),
-                  onPressed: (){
-                     Provider.of<TaskData>(context).addTask(taskTitle);
-                     Navigator.pop(context);
-                    },
+                  onPressed: () {
+                    setState(() {
+                      taskTitle.isEmpty ? _taskTitleValidate = true : _taskTitleValidate=false;
+                    });
+                    if(_taskTitleValidate == true){
+                      return;
+                    }
+                    Provider.of<TaskData>(context).addTask(taskTitle);
+                    Navigator.pop(context);
+                  },
                 )
               ],
             ),

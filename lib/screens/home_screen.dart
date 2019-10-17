@@ -4,9 +4,6 @@ import 'package:todoye/screens/create_task_screen.dart';
 import 'package:todoye/widgets/task_list_view.dart';
 import 'package:todoye/widgets/user_intro_section.dart';
 import 'package:todoye/widgets/list_box_title.dart';
-import 'package:provider/provider.dart';
-import 'package:todoye/models/task_data.dart';
-
 class HomeScreen extends StatelessWidget {
 
   @override
