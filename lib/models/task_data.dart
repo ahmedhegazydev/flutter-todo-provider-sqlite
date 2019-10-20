@@ -7,25 +7,19 @@ class TaskData extends ChangeNotifier {
 
   final TaskDatabaseManager taskDatabaseManager = new TaskDatabaseManager();
 
-
-  List<Task> _tasks = [
-    Task(name: 'Buy coffee'),
-    Task(name: 'Go Shopping'),
-    Task(name: 'Go Sleep'),
-    Task(name: 'Go play'),
-    Task(name: 'watch cartoon'),
-    Task(name: 'play'),
-    Task(name: 'learn'),
-    Task(name: 'write'),
-  ];
+  List<Task> _tasks = [];
 
   UnmodifiableListView<Task> get tasks {
     return UnmodifiableListView(_tasks);
 
   }
 
-
-
+  fetchTasks() {
+    taskDatabaseManager.getTasks().then((tasks) {
+       _tasks = tasks;
+       notifyListeners();
+    });
+  }
 
   int get taskCount{
     return _tasks.length;
@@ -34,7 +28,7 @@ class TaskData extends ChangeNotifier {
   addTask(String newTaskTitle, String newDate){
     final task =  Task(name: newTaskTitle, date: newDate);
     taskDatabaseManager.insertTask(task);
-    notifyListeners();
+    fetchTasks();
   }
 
   void updateTask(Task task) {
