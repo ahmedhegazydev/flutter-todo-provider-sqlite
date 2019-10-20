@@ -3,17 +3,17 @@ import 'package:todoye/constants.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class TaskListTile extends StatelessWidget {
-  const TaskListTile(
-      {this.taskTitle,
-      this.isChecked,
-      this.checkboxCallback,
-      this.deleteCallback});
+  const TaskListTile({
+    this.taskTitle,
+    this.isChecked,
+    this.checkboxCallback,
+    this.deleteCallback,
+  });
 
   final String taskTitle;
   final bool isChecked;
   final Function checkboxCallback;
   final Function deleteCallback;
-
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +46,6 @@ class TaskListTile extends StatelessWidget {
       key: Key(taskTitle),
       onDismissed: (direction) {
         deleteCallback();
-
         Scaffold.of(context)
             .showSnackBar(SnackBar(content: Text("$taskTitle removed.")));
       },
