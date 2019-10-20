@@ -44,4 +44,9 @@ class TaskDatabaseManager {
       whereArgs: [id],
     );
   }
+
+  Future<void> updateTask(Task task) async {
+    await openDb();
+    await _database.update('tasks', task.toMap(), where: 'id = ?', whereArgs: [task.id]);
+  }
 }
