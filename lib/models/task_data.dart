@@ -14,17 +14,19 @@ class TaskData extends ChangeNotifier {
 
   }
 
-  fetchTasks() {
-    taskDatabaseManager.getTasks().then((tasks) {
-       _tasks = tasks;
-       notifyListeners();
-    });
-  }
 
   int get taskCount{
     return _tasks.length;
   }
 
+  fetchTasks() {
+    taskDatabaseManager.getTasks().then((tasks){
+      _tasks = tasks;
+      notifyListeners();
+    });
+  }
+  
+  
   addTask(String newTaskTitle, String newDate){
     final task =  Task(name: newTaskTitle, date: newDate);
     taskDatabaseManager.insertTask(task);

@@ -13,6 +13,7 @@ dependencies:
   intl:
   sqflite:
   path:
+  font_awesome_flutter:
 
 
 dev_dependencies:

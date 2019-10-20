@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:todoye/constants.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class TaskListTile extends StatelessWidget {
   const TaskListTile(
@@ -17,12 +18,30 @@ class TaskListTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Dismissible(
-      background: Container(
-        decoration: BoxDecoration(color: Colors.white),
-        child: Icon(
-          Icons.delete,
-          color: Colors.red,
-        ),
+      background: Row(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: <Widget>[
+          Container(
+            color: Color(kPrimaryColor),
+            padding: EdgeInsets.symmetric(horizontal: 20.0),
+            child: Row(
+              children: <Widget>[
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                  child: Icon(
+                    FontAwesomeIcons.check,
+                    color: Colors.blue,
+                  ),
+                ),
+                Icon(
+                  Icons.delete,
+                  color: Colors.red,
+                ),
+              ],
+            ),
+          ),
+        ],
       ),
       key: Key(taskTitle),
       onDismissed: (direction) {

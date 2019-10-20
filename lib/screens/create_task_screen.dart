@@ -6,6 +6,9 @@ import 'package:todoye/models/task_data.dart';
 import 'package:todoye/widgets/date_picker.dart';
 import 'package:todoye/widgets/time_picker.dart';
 
+
+
+
 class CreateTaskScreen extends StatefulWidget {
   @override
   _CreateTaskScreenState createState() => _CreateTaskScreenState();
@@ -16,34 +19,20 @@ class _CreateTaskScreenState extends State<CreateTaskScreen> {
 
   String taskTitle = '';
   bool _taskTitleValidate = false;
-
   DateTime _currentDate = new DateTime.now();
   TimeOfDay _currentTime = new TimeOfDay.now();
 
-  String timeText = 'Set A Time';
+  TimeOfDay selectedTime;
+  String formattedTime;
+  String timeText = 'set Time';
 
 
 
   @override
   Widget build(BuildContext context) {
+
     /// Time Picker
-    Future<Null> selectTime(BuildContext context) async {
-      TimeOfDay selectedTime = await showTimePicker(
-        context: context,
-        initialTime: _currentTime,
-      );
-
-      MaterialLocalizations localizations = MaterialLocalizations.of(context);
-      String formattedTime = localizations.formatTimeOfDay(selectedTime,
-          alwaysUse24HourFormat: false);
-
-      if (formattedTime != null) {
-        setState(() {
-          timeText = formattedTime;
-        });
-      }
-    }
-
+    MaterialLocalizations localizations = MaterialLocalizations.of(context);
     ///Date Picker
     String formatedDate = new DateFormat.yMMMd().format(_currentDate);
     Future<Null> selectedDate(BuildContext context) async {
@@ -63,8 +52,6 @@ class _CreateTaskScreenState extends State<CreateTaskScreen> {
         });
       }
     }
-
-
 
     return Scaffold(
       backgroundColor: Color(kPrimaryColor),
@@ -124,8 +111,18 @@ class _CreateTaskScreenState extends State<CreateTaskScreen> {
                 TimePicker(
                   icon: Icons.access_time,
                   selectedTime: '$timeText',
-                  onPress: () {
-                    selectTime(context);
+                  onPress: () async {
+                    showTimePicker(
+                      context: context,
+                      initialTime: _currentTime,
+                    ).then(
+                          (TimeOfDay value) => setState(
+                            () {
+                          timeText = localizations.formatTimeOfDay(value,
+                              alwaysUse24HourFormat: false);
+                        },
+                      ),
+                    );
                   },
                 ),
                 FlatButton(
@@ -143,7 +140,8 @@ class _CreateTaskScreenState extends State<CreateTaskScreen> {
                     if (_taskTitleValidate == true) {
                       return;
                     }
-                    Provider.of<TaskData>(context).addTask(taskTitle, formatedDate);
+                    Provider.of<TaskData>(context)
+                        .addTask(taskTitle, formatedDate);
                     Navigator.pop(context);
                   },
                 )
