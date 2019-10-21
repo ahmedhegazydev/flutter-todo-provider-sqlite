@@ -2,10 +2,10 @@ class Task {
   final int id;
   final String name;
   final String date;
-
+  final String time;
   bool isDone;
 
-  Task({this.id, this.name, this.isDone=false, this.date});
+  Task({this.id, this.name, this.isDone=false, this.date, this.time});
 
   void toggleDone() {
     isDone = !isDone;
@@ -16,6 +16,7 @@ class Task {
       'title': name,
       'date': date,
       'iscomplete': isDone,
+      'time':time,
     };
   }
 }

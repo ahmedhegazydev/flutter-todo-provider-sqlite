@@ -144,7 +144,7 @@ class _CreateTaskScreenState extends State<CreateTaskScreen> {
                       return;
                     }
                     Provider.of<TaskData>(context)
-                        .addTask(taskTitle, formatedDate);
+                        .addTask(taskTitle, formatedDate, timeText);
                     Navigator.pop(context);
                   },
                 )

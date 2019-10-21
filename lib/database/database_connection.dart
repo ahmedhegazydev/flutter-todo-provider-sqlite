@@ -9,10 +9,10 @@ class TaskDatabaseManager {
   Future openDb() async {
     if (_database == null) {
       _database = await openDatabase(
-          join(await getDatabasesPath(), 'task_database.db'),
+          join(await getDatabasesPath(), 'tasks_database.db'),
           version: 1, onCreate: (Database db, int version) async {
         await db.execute(
-            'CREATE TABLE tasks (id INTEGER PRIMARY KEY autoincrement, title TEXT, date TEXT, iscomplete BOOL )');
+            'CREATE TABLE tasks (id INTEGER PRIMARY KEY autoincrement, title TEXT, date TEXT, iscomplete BOOL, time TEXT )');
       });
     }
   }
@@ -32,6 +32,7 @@ class TaskDatabaseManager {
         name: maps[i]['title'],
         date: maps[i]['date'],
         isDone: maps[i]['iscomplete'] == 1 ? true : false,
+        time: maps[i]['time'],
       );
     });
   }

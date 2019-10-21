@@ -29,10 +29,8 @@ class MyApp extends StatelessWidget {
             color: Color(kLightBackgroundColor),
           ),
           brightness: Brightness.dark,
-
         ),
         home: HomeScreen(),
-
       ),
     );
   }

@@ -4,12 +4,13 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class TaskListTile extends StatelessWidget {
   const TaskListTile({
+    this.taskTime,
     this.taskTitle,
     this.isChecked,
     this.checkboxCallback,
     this.deleteCallback,
   });
-
+  final String taskTime;
   final String taskTitle;
   final bool isChecked;
   final Function checkboxCallback;
@@ -60,7 +61,7 @@ class TaskListTile extends StatelessWidget {
           ),
         ),
         subtitle: Text(
-          '09:30-11:00am',
+          '$taskTime',
           style: TextStyle(
             letterSpacing: 2.0,
             fontSize: 15.0,

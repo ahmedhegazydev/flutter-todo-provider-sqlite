@@ -27,8 +27,8 @@ class TaskData extends ChangeNotifier {
   }
   
   
-  addTask(String newTaskTitle, String newDate){
-    final task =  Task(name: newTaskTitle, date: newDate);
+  addTask(String newTaskTitle, String newDate, String newTime){
+    final task =  Task(name: newTaskTitle, date: newDate, time: newTime);
     taskDatabaseManager.insertTask(task);
     fetchTasks();
   }

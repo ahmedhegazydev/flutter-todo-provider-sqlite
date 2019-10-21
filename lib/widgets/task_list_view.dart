@@ -17,6 +17,7 @@ class _TaskListViewState extends State<TaskListView> {
             itemCount: taskData.taskCount,
             itemBuilder: (context, index) {
               return TaskListTile(
+                taskTime:taskData.tasks[index].time,
                 taskTitle: taskData.tasks[index].name,
                 isChecked: taskData.tasks[index].isDone,
                 checkboxCallback: (checkboxState) {
