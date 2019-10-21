@@ -35,6 +35,7 @@ class TaskData extends ChangeNotifier {
 
   void updateTask(Task task) {
     task.toggleDone();
+    taskDatabaseManager.updateTask(task);
     notifyListeners();
   }
 
