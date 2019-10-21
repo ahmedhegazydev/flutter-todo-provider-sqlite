@@ -6,6 +6,7 @@ import 'package:todoye/widgets/user_intro_section.dart';
 import 'package:todoye/widgets/list_box_title.dart';
 
 class HomeScreen extends StatelessWidget {
+  static const String id = 'home_screen';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -45,8 +46,7 @@ class HomeScreen extends StatelessWidget {
           size: 30.0,
         ),
         onPressed: () {
-          Navigator.push(context,
-              MaterialPageRoute(builder: (context) => CreateTaskScreen()));
+          Navigator.pushNamed(context, CreateTaskScreen.id);
         },
       ),
       body: Column(

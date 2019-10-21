@@ -6,10 +6,8 @@ import 'package:todoye/models/task_data.dart';
 import 'package:todoye/widgets/date_picker.dart';
 import 'package:todoye/widgets/time_picker.dart';
 
-
-
-
 class CreateTaskScreen extends StatefulWidget {
+  static const String id = 'create_task_screen';
   @override
   _CreateTaskScreenState createState() => _CreateTaskScreenState();
 }
@@ -26,13 +24,11 @@ class _CreateTaskScreenState extends State<CreateTaskScreen> {
   String formattedTime;
   String timeText;
 
-
-
   @override
   Widget build(BuildContext context) {
-
     /// Time Picker
     MaterialLocalizations localizations = MaterialLocalizations.of(context);
+
     ///Date Picker
     String formatedDate = new DateFormat.yMMMd().format(_currentDate);
     if (timeText == null)
@@ -119,8 +115,8 @@ class _CreateTaskScreenState extends State<CreateTaskScreen> {
                       context: context,
                       initialTime: _currentTime,
                     ).then(
-                          (TimeOfDay value) => setState(
-                            () {
+                      (TimeOfDay value) => setState(
+                        () {
                           timeText = localizations.formatTimeOfDay(value,
                               alwaysUse24HourFormat: false);
                         },

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:todoye/screens/home_screen.dart';
 
-class RegisterScreen extends StatelessWidget {
-  static const String id = 'registration_screen';
+class WelcomeScreen extends StatelessWidget {
+  static const String id = 'welcome_screen';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -9,9 +11,9 @@ class RegisterScreen extends StatelessWidget {
         child: Center(
           child: FlatButton(
             onPressed: () {
-              print('You registerd');
+              Navigator.pushNamed(context, HomeScreen.id);
             },
-            child: Text('Register Screen'),
+            child: Text('welcome Screen'),
           ),
         ),
       ),
