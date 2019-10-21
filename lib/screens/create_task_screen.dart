@@ -24,7 +24,7 @@ class _CreateTaskScreenState extends State<CreateTaskScreen> {
 
   TimeOfDay selectedTime;
   String formattedTime;
-  String timeText = 'set Time';
+  String timeText;
 
 
 
@@ -35,6 +35,9 @@ class _CreateTaskScreenState extends State<CreateTaskScreen> {
     MaterialLocalizations localizations = MaterialLocalizations.of(context);
     ///Date Picker
     String formatedDate = new DateFormat.yMMMd().format(_currentDate);
+    if (timeText == null)
+      timeText = localizations.formatTimeOfDay(_currentTime,
+          alwaysUse24HourFormat: false);
     Future<Null> selectedDate(BuildContext context) async {
       final DateTime _selectDate = await showDatePicker(
           context: context,
