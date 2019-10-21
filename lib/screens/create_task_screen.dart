@@ -13,6 +13,7 @@ class CreateTaskScreen extends StatefulWidget {
 }
 
 class _CreateTaskScreenState extends State<CreateTaskScreen> {
+
   final TextEditingController _taskTitleController = TextEditingController();
 
   String taskTitle = '';
