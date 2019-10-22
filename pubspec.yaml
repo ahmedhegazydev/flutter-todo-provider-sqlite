@@ -14,7 +14,8 @@ dependencies:
   sqflite:
   path:
   font_awesome_flutter:
-
+  firebase_auth:
+  firebase_core:
 
 dev_dependencies:
   flutter_test:
