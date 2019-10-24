@@ -9,6 +9,8 @@
 .history
 .svn/
 android.zip
+google-services.json
+
 # IntelliJ related
 *.iml
 *.ipr

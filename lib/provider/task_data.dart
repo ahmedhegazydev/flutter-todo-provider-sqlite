@@ -1,5 +1,5 @@
 import 'package:flutter/foundation.dart';
-import 'task.dart';
+import '../models/task.dart';
 import 'dart:collection';
 import 'package:todoye/database/database_connection.dart';
 

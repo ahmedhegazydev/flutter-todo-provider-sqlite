@@ -45,8 +45,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
               controller: _emailTextController,
               onChanged: (value) {
                 emailText = value;
-                print(value);
-
               },
               decoration: InputDecoration(
                 errorText: _taskTitleValidate ? 'Email Can\' Be Empty' : null,
@@ -59,7 +57,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   ),
                   onPressed: () {
                     WidgetsBinding.instance.addPostFrameCallback(
-                            (_) => _emailTextController.clear());
+                        (_) => _emailTextController.clear());
                   },
                 ),
               ),
@@ -73,12 +71,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
               style: kInputTextStyle,
               controller: _passwordTextController,
               onChanged: (value) {
-                print(value);
                 passwordText = value;
               },
               decoration: InputDecoration(
                 errorText:
-                _taskTitleValidate ? 'Password Can\' Be Empty' : null,
+                    _taskTitleValidate ? 'Password Can\' Be Empty' : null,
                 labelText: 'Password',
                 labelStyle: kInputLabelTextStyle,
                 suffixIcon: IconButton(
@@ -91,21 +88,29 @@ class _RegisterScreenState extends State<RegisterScreen> {
               ),
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 40.0, vertical: 20.0),
-            child: Container(
+          
 
-              decoration: BoxDecoration(
-                  color: Color(kFloatingActionButtonColor)
+          Padding(
+            padding:
+                const EdgeInsets.symmetric(horizontal: 40.0, vertical: 20.0),
+            child: Container(
+              decoration:
+                  BoxDecoration(color: Color(kFloatingActionButtonColor)),
+              child:FlatButton(
+                    onPressed: () {
+                      print(emailText);
+                      print(passwordText);
+                      
+                    },
+                    child: Text(
+                      'REGISTER',
+                      style: TextStyle(color: Colors.white, fontSize: 20.0),
+                    ),
+                  
               ),
-              child: FlatButton(
-                onPressed: (){
-                  print('You presses Register Button');
-                },
-                child: Text('REGISTER', style: TextStyle(color: Colors.white, fontSize: 20.0),),
               ),
             ),
-          )
+          
         ],
       ),
     );

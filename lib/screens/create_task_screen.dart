@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:todoye/constants.dart';
 import 'package:intl/intl.dart';
-import 'package:todoye/models/task_data.dart';
+import 'package:todoye/provider/task_data.dart';
 import 'package:todoye/widgets/date_picker.dart';
 import 'package:todoye/widgets/time_picker.dart';
 
