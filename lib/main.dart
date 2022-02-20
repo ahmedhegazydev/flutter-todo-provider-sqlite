@@ -11,16 +11,14 @@ void main() => runApp(MyApp());
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    // builder: (context) {
-    //   var taskData = TaskData();
-    //   taskData.fetchTasks();
-    //   return taskData;
-    // },
+
+    var taskData = TaskData();
+    taskData.fetchTasks();
 
     return MultiProvider(
       providers: [
         //TaskData Provider
-        ChangeNotifierProvider(create: (_) => TaskData()),
+        ChangeNotifierProvider(create: (context) => taskData),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
