@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:todoye/constants.dart';
 
+import '../models/ActionType.dart';
 import '../screens/create_task_screen.dart';
 
 class AddActionButton extends StatelessWidget {
@@ -9,12 +10,18 @@ class AddActionButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
         padding: EdgeInsets.symmetric(vertical: 8, horizontal: 12),
-
         child: IconButton(
           icon: Icon(Icons.add),
           color: Colors.white,
           onPressed: () {
-            Navigator.pushNamed(context, CreateTaskScreen.id);
+            // Navigator.pushNamed(context, CreateTaskScreen.id);
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => CreateTaskScreen(
+                    taskActionType: ActionType.Add),
+              ),
+            );
           },
         ));
 

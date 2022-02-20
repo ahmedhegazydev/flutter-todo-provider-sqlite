@@ -12,24 +12,23 @@ import '../models/task.dart';
 class CreateTaskScreen extends StatefulWidget {
   static const String id = 'create_task_screen';
 
-  final ActionType taskActionType = null;
-  final Task taskToEdit = null;
+  final ActionType taskActionType;
+  final Task taskToEdit;
 
   @override
   _CreateTaskScreenState createState() => _CreateTaskScreenState();
 
   const CreateTaskScreen({
     Key key,
-    taskActionType,
-    taskToEdit,
+    @required  this.taskActionType,
+    @required  this.taskToEdit,
   }) : super(key: key);
 }
 
 class _CreateTaskScreenState extends State<CreateTaskScreen> {
   final TextEditingController _taskTitleController = TextEditingController();
 
-  // final Task taskToEdit;
-
+  //  Task taskToEdit;
   // _CreateTaskScreenState({
   //   this.taskActionType,
   //   this.taskToEdit,
@@ -51,12 +50,16 @@ class _CreateTaskScreenState extends State<CreateTaskScreen> {
     MaterialLocalizations localizations = MaterialLocalizations.of(context);
 
     String formatedDate = "";
-    print(ActionType.Add.name);
+    // print(widget.taskActionType.name);
+    // print(taskActionType);
     String addOrEdit =
-        widget.taskActionType == ActionType.Add ? "Create " : "Edit";
+        widget.taskActionType.name == ActionType.Add.name ? "Create " : "Edit";
     switch (widget.taskActionType) {
       case ActionType.Edit:
+
         _taskTitleController.text = widget.taskToEdit.name;
+        // _taskTitleController.text = taskToEdit.name;
+
         timeText = widget.taskToEdit.time;
         formatedDate = widget.taskToEdit.date;
         break;

@@ -39,7 +39,9 @@ class MyApp extends StatelessWidget {
         routes: {
           WelcomeScreen.id: (context) => WelcomeScreen(),
           HomeScreen.id: (context) => HomeScreen(),
-          CreateTaskScreen.id: (context) => CreateTaskScreen(),
+          CreateTaskScreen.id: (context) => CreateTaskScreen(
+                taskActionType: ActionType.Add,
+              ),
         },
       ),
     );
