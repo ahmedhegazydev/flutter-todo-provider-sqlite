@@ -28,12 +28,6 @@ class CreateTaskScreen extends StatefulWidget {
 class _CreateTaskScreenState extends State<CreateTaskScreen> {
   final TextEditingController _taskTitleController = TextEditingController();
 
-  //  Task taskToEdit;
-  // _CreateTaskScreenState({
-  //   this.taskActionType,
-  //   this.taskToEdit,
-  // });
-  // ActionType taskActionType;
 
   String taskTitle = '';
   bool _taskTitleValidate = false;
@@ -50,15 +44,12 @@ class _CreateTaskScreenState extends State<CreateTaskScreen> {
     MaterialLocalizations localizations = MaterialLocalizations.of(context);
 
     String formatedDate = "";
-    // print(widget.taskActionType.name);
-    // print(taskActionType);
     String addOrEdit =
         widget.taskActionType.name == ActionType.Add.name ? "Create " : "Edit";
     switch (widget.taskActionType) {
       case ActionType.Edit:
 
         _taskTitleController.text = widget.taskToEdit.name;
-        // _taskTitleController.text = taskToEdit.name;
 
         timeText = widget.taskToEdit.time;
         formatedDate = widget.taskToEdit.date;
