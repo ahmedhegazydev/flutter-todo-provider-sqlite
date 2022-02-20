@@ -6,14 +6,15 @@ import 'package:todoye/provider/task_data.dart';
 import 'package:todoye/widgets/date_picker.dart';
 import 'package:todoye/widgets/time_picker.dart';
 
+
 class CreateTaskScreen extends StatefulWidget {
   static const String id = 'create_task_screen';
+
   @override
   _CreateTaskScreenState createState() => _CreateTaskScreenState();
 }
 
 class _CreateTaskScreenState extends State<CreateTaskScreen> {
-
   final TextEditingController _taskTitleController = TextEditingController();
 
   String taskTitle = '';
@@ -39,8 +40,8 @@ class _CreateTaskScreenState extends State<CreateTaskScreen> {
       final DateTime _selectDate = await showDatePicker(
           context: context,
           initialDate: _currentDate,
-          firstDate: DateTime(2019),
-          lastDate: DateTime(2021),
+          firstDate: DateTime(2010),
+          lastDate: DateTime(2025),
           builder: (context, child) {
             return SingleChildScrollView(
               child: child,
@@ -54,9 +55,30 @@ class _CreateTaskScreenState extends State<CreateTaskScreen> {
     }
 
     return Scaffold(
-      backgroundColor: Color(kPrimaryColor),
+      backgroundColor: (kPrimaryColor),
       appBar: AppBar(
         elevation: 0.0,
+        actions: [
+
+          IconButton(
+            icon: Icon(Icons.done),
+            color: Colors.white,
+            onPressed: () {
+              setState(() {
+                taskTitle.isEmpty
+                    ? _taskTitleValidate = true
+                    : _taskTitleValidate = false;
+              });
+              if (_taskTitleValidate == true) {
+                return;
+              }
+              Provider.of<TaskData>(context, listen: false)
+                  .addTask(taskTitle, formatedDate, timeText);
+              Navigator.pop(context);
+            },
+          )
+
+        ],
         title: Text('Create a Task'),
       ),
       body: SafeArea(
@@ -65,6 +87,7 @@ class _CreateTaskScreenState extends State<CreateTaskScreen> {
             right: 20.0,
             left: 20.0,
             top: 20.0,
+            bottom: 20.0,
           ),
           child: Container(
             decoration: BoxDecoration(
@@ -72,6 +95,8 @@ class _CreateTaskScreenState extends State<CreateTaskScreen> {
               borderRadius: BorderRadius.only(
                 topLeft: Radius.circular(20.0),
                 topRight: Radius.circular(20.0),
+                bottomRight: Radius.circular(20.0),
+                bottomLeft: Radius.circular(20.0),
               ),
             ),
             padding: EdgeInsets.symmetric(
@@ -125,26 +150,7 @@ class _CreateTaskScreenState extends State<CreateTaskScreen> {
                     );
                   },
                 ),
-                FlatButton(
-                  //TODO: style the button
-                  child: Text(
-                    "LET'S GO",
-                    style: TextStyle(fontSize: 30.0, color: Colors.white),
-                  ),
-                  onPressed: () {
-                    setState(() {
-                      taskTitle.isEmpty
-                          ? _taskTitleValidate = true
-                          : _taskTitleValidate = false;
-                    });
-                    if (_taskTitleValidate == true) {
-                      return;
-                    }
-                    Provider.of<TaskData>(context)
-                        .addTask(taskTitle, formatedDate, timeText);
-                    Navigator.pop(context);
-                  },
-                )
+
               ],
             ),
           ),

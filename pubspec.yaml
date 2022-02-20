@@ -8,15 +8,29 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  cupertino_icons: ^0.1.2
-  provider: ^3.1.0
-  intl:
-  sqflite:
-  path:
-  font_awesome_flutter:
-  firebase_auth:
-  firebase_core:
-  cloud_firestore:
+  cupertino_icons: ^1.0.4
+  provider: ^6.0.2
+
+#  intl:
+  intl: ^0.17.0
+
+#  sqflite:
+  sqflite: ^2.0.2
+
+#  path:
+  path: ^1.8.1
+
+#  font_awesome_flutter:
+  font_awesome_flutter: ^9.2.0
+
+#  firebase_auth:
+#  firebase_auth: ^3.3.7
+
+#  firebase_core:
+#  firebase_core: ^1.12.0
+
+#  cloud_firestore:
+#  cloud_firestore: ^3.1.8
 
 dev_dependencies:
   flutter_test:

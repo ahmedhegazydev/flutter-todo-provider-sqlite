@@ -24,7 +24,7 @@ class TaskListTile extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.end,
         children: <Widget>[
           Container(
-            color: Color(kPrimaryColor),
+            color: kPrimaryColor,
             padding: EdgeInsets.symmetric(horizontal: 20.0),
             child: Row(
               children: <Widget>[

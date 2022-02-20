@@ -32,10 +32,10 @@ class DatePicker extends StatelessWidget {
           SizedBox(
             width: 50.0,
           ),
-          Text(
-            'All Day',
-            style: TextStyle(color: Color(kBorderTileColor)),
-          ),
+          // Text(
+          //   'All Day',
+          //   style: TextStyle(color: Color(kBorderTileColor)),
+          // ),
         ],
       ),
       onPressed: () {
