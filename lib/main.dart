@@ -23,19 +23,17 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => TaskData()),
       ],
       child: MaterialApp(
-
         debugShowCheckedModeBanner: false,
 
         title: 'To-Do',
         theme: ThemeData.dark().copyWith(
-          // theme: ThemeData().copyWith(
 
           appBarTheme: AppBarTheme(
             backgroundColor: Colors.transparent,
             elevation: 0,
           ),
 
-            primaryColor: kPrimaryColor,
+          primaryColor: kPrimaryColor,
 
           scaffoldBackgroundColor: kPrimaryColor,
         ),
