@@ -6,16 +6,35 @@ import 'package:todoye/provider/task_data.dart';
 import 'package:todoye/widgets/date_picker.dart';
 import 'package:todoye/widgets/time_picker.dart';
 
+import '../models/ActionType.dart';
+import '../models/task.dart';
 
 class CreateTaskScreen extends StatefulWidget {
   static const String id = 'create_task_screen';
 
+  final ActionType taskActionType = null;
+  final Task taskToEdit = null;
+
   @override
   _CreateTaskScreenState createState() => _CreateTaskScreenState();
+
+  const CreateTaskScreen({
+    Key key,
+    taskActionType,
+    taskToEdit,
+  }) : super(key: key);
 }
 
 class _CreateTaskScreenState extends State<CreateTaskScreen> {
   final TextEditingController _taskTitleController = TextEditingController();
+
+  // final Task taskToEdit;
+
+  // _CreateTaskScreenState({
+  //   this.taskActionType,
+  //   this.taskToEdit,
+  // });
+  // ActionType taskActionType;
 
   String taskTitle = '';
   bool _taskTitleValidate = false;
@@ -31,8 +50,22 @@ class _CreateTaskScreenState extends State<CreateTaskScreen> {
     /// Time Picker
     MaterialLocalizations localizations = MaterialLocalizations.of(context);
 
+    String formatedDate = "";
+    print(ActionType.Add.name);
+    String addOrEdit =
+        widget.taskActionType == ActionType.Add ? "Create " : "Edit";
+    switch (widget.taskActionType) {
+      case ActionType.Edit:
+        _taskTitleController.text = widget.taskToEdit.name;
+        timeText = widget.taskToEdit.time;
+        formatedDate = widget.taskToEdit.date;
+        break;
+      default:
+        formatedDate = new DateFormat.yMMMd().format(_currentDate);
+        break;
+    }
+
     ///Date Picker
-    String formatedDate = new DateFormat.yMMMd().format(_currentDate);
     if (timeText == null)
       timeText = localizations.formatTimeOfDay(_currentTime,
           alwaysUse24HourFormat: false);
@@ -59,7 +92,6 @@ class _CreateTaskScreenState extends State<CreateTaskScreen> {
       appBar: AppBar(
         elevation: 0.0,
         actions: [
-
           IconButton(
             icon: Icon(Icons.done),
             color: Colors.white,
@@ -77,9 +109,8 @@ class _CreateTaskScreenState extends State<CreateTaskScreen> {
               Navigator.pop(context);
             },
           )
-
         ],
-        title: Text('Create a Task'),
+        title: Text('$addOrEdit a Task'),
       ),
       body: SafeArea(
         child: Padding(
@@ -115,7 +146,7 @@ class _CreateTaskScreenState extends State<CreateTaskScreen> {
                   decoration: InputDecoration(
                     errorText:
                         _taskTitleValidate ? 'Title Can\' Be Empty' : null,
-                    labelText: 'Add Task',
+                    labelText: '$addOrEdit Task',
                     labelStyle: kInputLabelTextStyle,
                     suffixIcon: IconButton(
                       icon: Icon(
@@ -150,7 +181,6 @@ class _CreateTaskScreenState extends State<CreateTaskScreen> {
                     );
                   },
                 ),
-
               ],
             ),
           ),

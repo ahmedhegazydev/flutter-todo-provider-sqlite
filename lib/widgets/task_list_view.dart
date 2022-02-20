@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:todoye/models/ActionType.dart';
+import 'package:todoye/screens/create_task_screen.dart';
 import 'task_list_tile.dart';
 import 'package:provider/provider.dart';
 import 'package:todoye/provider/task_data.dart';
@@ -28,6 +30,16 @@ class _TaskListViewState extends State<TaskListView> {
                   setState(() {
                     taskData.remove(index);
                   });
+                },
+                editCallback: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => CreateTaskScreen(
+                          taskActionType: ActionType.Edit,
+                          taskToEdit: taskData.tasks[index]),
+                    ),
+                  );
                 },
               );
             });
