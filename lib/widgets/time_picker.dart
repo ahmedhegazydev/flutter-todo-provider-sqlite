@@ -20,7 +20,7 @@ class TimePicker extends StatelessWidget {
             color: Color(kBorderTileColor),
           ),
           SizedBox(
-            width: 50.0,
+            width: 20.0,
           ),
           Text(
             selectedTime,

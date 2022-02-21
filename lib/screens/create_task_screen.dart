@@ -3,11 +3,13 @@ import 'package:provider/provider.dart';
 import 'package:todoye/constants.dart';
 import 'package:intl/intl.dart';
 import 'package:todoye/provider/task_data.dart';
+import 'package:todoye/widgets/add_task_action_button.dart';
 import 'package:todoye/widgets/date_picker.dart';
 import 'package:todoye/widgets/time_picker.dart';
 
 import '../models/ActionType.dart';
 import '../models/task.dart';
+import '../widgets/save_task_action_button.dart';
 
 class CreateTaskScreen extends StatefulWidget {
   static const String id = 'create_task_screen';
@@ -20,14 +22,13 @@ class CreateTaskScreen extends StatefulWidget {
 
   const CreateTaskScreen({
     Key key,
-    @required  this.taskActionType,
-    @required  this.taskToEdit,
+    @required this.taskActionType,
+    @required this.taskToEdit,
   }) : super(key: key);
 }
 
 class _CreateTaskScreenState extends State<CreateTaskScreen> {
   final TextEditingController _taskTitleController = TextEditingController();
-
 
   String taskTitle = '';
   bool _taskTitleValidate = false;
@@ -48,7 +49,6 @@ class _CreateTaskScreenState extends State<CreateTaskScreen> {
         widget.taskActionType.name == ActionType.Add.name ? "Create " : "Edit";
     switch (widget.taskActionType) {
       case ActionType.Edit:
-
         _taskTitleController.text = widget.taskToEdit.name;
 
         timeText = widget.taskToEdit.time;
@@ -86,10 +86,8 @@ class _CreateTaskScreenState extends State<CreateTaskScreen> {
       appBar: AppBar(
         elevation: 0.0,
         actions: [
-          IconButton(
-            icon: Icon(Icons.done),
-            color: Colors.white,
-            onPressed: () {
+          SaveActionButton(
+            saveCallback: () {
               setState(() {
                 taskTitle.isEmpty
                     ? _taskTitleValidate = true

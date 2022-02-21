@@ -23,19 +23,12 @@ class DatePicker extends StatelessWidget {
             color: Color(kBorderTileColor),
           ),
           SizedBox(
-            width: 50.0,
+            width: 20.0,
           ),
           Text(
             '$formatedDate',
             style: kInputTextStyle,
           ),
-          SizedBox(
-            width: 50.0,
-          ),
-          // Text(
-          //   'All Day',
-          //   style: TextStyle(color: Color(kBorderTileColor)),
-          // ),
         ],
       ),
       onPressed: () {

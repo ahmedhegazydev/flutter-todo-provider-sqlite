@@ -15,8 +15,10 @@ class _TaskListViewState extends State<TaskListView> {
   Widget build(BuildContext context) {
     return Consumer<TaskData>(
       builder: (context, taskData, child) {
-        return ListView.builder(
+        return ListView.separated(
             itemCount: taskData.taskCount,
+            separatorBuilder: (BuildContext context, int index) =>
+                Divider(height: 1),
             itemBuilder: (context, index) {
               return TaskListTile(
                 taskTime: taskData.tasks[index].time,

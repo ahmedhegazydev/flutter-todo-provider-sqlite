@@ -6,7 +6,7 @@ var kBorderTileColor = 0xff618bb4;
 
 
 var kInputTextStyle = TextStyle(
-    fontSize: 25.0,
+    fontSize: 20.0,
     fontWeight: FontWeight.w400,
     color: Colors.white
 );
