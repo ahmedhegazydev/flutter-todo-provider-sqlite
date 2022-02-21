@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:morpheus/page_routes/morpheus_page_route.dart';
 import 'package:todoye/constants.dart';
 
 class TaskListTile extends StatelessWidget {
   const TaskListTile({
+    this.key,
     this.taskTime,
     this.taskTitle,
     this.isChecked,
@@ -12,6 +14,7 @@ class TaskListTile extends StatelessWidget {
     this.editCallback,
   });
 
+  final GlobalKey key;
   final String taskTime;
   final String taskTitle;
   final bool isChecked;
@@ -21,8 +24,13 @@ class TaskListTile extends StatelessWidget {
 
   @override
   Widget build(final BuildContext buildContext) {
+    final _parentKey = GlobalKey();
+
     return Slidable(
-      key: const ValueKey(0),
+
+      // key: const ValueKey(0),
+      key: _parentKey,
+
       startActionPane: ActionPane(
         motion: const ScrollMotion(),
         dismissible: DismissiblePane(onDismissed: () {
@@ -86,4 +94,6 @@ class TaskListTile extends StatelessWidget {
     Scaffold.of(buildContext)
         .showSnackBar(SnackBar(content: Text("$taskTitle removed.")));
   }
+
+
 }
